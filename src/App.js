@@ -57,18 +57,6 @@ class App extends Component {
   displayFaceBox = (box) => {
     console.log(box);
 
-    // for(var i in box) {
-    //   this.setState({box: box[i]});
-    // }
-
-    // for(var i = 0; i < box.length; i++) {
-    //   this.setState({box: box[i]}); 
-    //   console.log(box[i])
-    // }
-
-    // for(var i in box) {
-    //   this.setState({ box: [...this.state.box, box[i]]})
-    // }
     this.setState({box: box});
   }
 
