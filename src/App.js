@@ -30,7 +30,7 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: '',
-      box: {}
+      box: []
     }
   }
 
@@ -39,7 +39,6 @@ class App extends Component {
     const image = document.getElementById('inputimage');
     const width = Number(image.width);
     const height = Number(image.height);
-    //[0].region_info.bounding_box;
     let arr = [];
     let box;
     for (var i = 0; i < clarifaiFace.length; i++) {
@@ -57,11 +56,21 @@ class App extends Component {
   
   displayFaceBox = (box) => {
     console.log(box);
-    for(var i = 0; i < box.length; i++) {
-      this.setState({box: box[i]}); 
-      console.log(box[i])
-    }
-}
+
+    // for(var i in box) {
+    //   this.setState({box: box[i]});
+    // }
+
+    // for(var i = 0; i < box.length; i++) {
+    //   this.setState({box: box[i]}); 
+    //   console.log(box[i])
+    // }
+
+    // for(var i in box) {
+    //   this.setState({ box: [...this.state.box, box[i]]})
+    // }
+    this.setState({box: box});
+  }
 
   onInputChange = (event) => {
     console.log('check');
@@ -78,20 +87,21 @@ class App extends Component {
     }
 
   render() {
-    return (
-      <div className="App">
-        <Particles className='particles' params={particlesOptions} />
-        <Navigation />
-        <Logo />
-        <Rank />
-        <ImageLinkForm 
-          onInputChange={this.onInputChange} 
-          onButtonSubmit={this.onButtonSubmit}/>
-        <FaceRecognition 
-        box={this.state.box} 
-        imageUrl={this.state.imageUrl}/>
-      </div>
-    );
+      return (
+        <div className="App">
+          <Particles className='particles' params={particlesOptions} />
+          <Navigation />
+          <Logo />
+          <Rank />
+          <ImageLinkForm 
+            onInputChange={this.onInputChange} 
+            onButtonSubmit={this.onButtonSubmit}/>
+          <FaceRecognition 
+          box={this.state.box}
+          imageUrl={this.state.imageUrl}/>
+          
+        </div>
+      );
   }
 }
 
